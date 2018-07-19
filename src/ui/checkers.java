@@ -3,8 +3,9 @@ package ui;
 public class checkers {
     public static void main(String[] args) {
         System.out.println("Welcome to checkers!");
-        Interface info =
-        testMoveValidation();
+        Board cboard = new Board();
+        Interface info = new Interface(cboard);
+        info.handleUserInput();
         //cboard.validMove(4,5,3,1);
         //cboard.validMove(4,5,3,2);
         //cboard.validMove(4,5,4,1);
