@@ -1,11 +1,16 @@
 package ui;
+
 import java.util.Scanner;
+
 
 public class Interface {
 
+    int[] error = {-1, 0, 0, 0};
     private Scanner input;
     private Board board;
     boolean gameInProgress;
+    boolean whiteMove;
+    ButtonGrid grid = new ButtonGrid(8,8);
 
     public Interface(Board brd){
         input = new Scanner(System.in);
@@ -15,21 +20,34 @@ public class Interface {
 
     //EFFECTS: parses user input until user quits
     public void handleUserInput(){
+        initializeGraphics();
+        board.print();
         printInstructions();
         int[] move;
 
         while(gameInProgress){
             move = getUserMove();
-        }
+            if (move != error){
+                board.handleMove(move);
+                board.print();
+            }
 
+        }
     }
 
     public void printInstructions(){
         System.out.println("Type in the coordinates of the piece you would like to move, " +
                 "followed by the coordinates of location youd like to move too");
+        System.out.println("For example: 0,5,1,4 moves the white piece at [0,5] to [1,4]!");
     }
 
     //Takes no parameters, returns user input as an array of 4 ints. Called by handleUserInput
+    //If the user gives an invalid move, it returns an the error array.
+
+    public void initializeGraphics(){
+        ButtonGrid grid = new ButtonGrid(8,8);
+    }
+
     private int[] getUserMove(){
         String in = "";
         String[] str;
@@ -39,7 +57,7 @@ public class Interface {
             in = input.next();
             str = in.split(",");
             if (str.length != 4) {
-                int[] error = {-1, 0, 0, 0};
+
                 System.out.println("Input must be 4 long!");
                 return error;
             }
@@ -51,15 +69,11 @@ public class Interface {
                 //Ensure input are integers
                 catch (Exception e){
                     System.out.println("Input must be all integers1!");
-                    int [] error = {-1,0,0,0};
                     return error;
                 }
 
 
             }
-        }
-        for(int i = 0; i < move.length; i++){
-            System.out.println(move[i]);
         }
         return move;
     }
