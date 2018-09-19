@@ -77,6 +77,7 @@ public class ButtonGrid {
                             //JButton but = (JButton) ae.getSource();  not sure what this does
                             positionLabel.setText(
                                     currentlySelected.getText() + "--->" + button.getText());
+                            board.handleMove();
                             currentlySelected = null;
                         }
 
@@ -107,6 +108,4 @@ public class ButtonGrid {
         GUI.pack();
         GUI.setVisible(true);
     }
-
-
 }

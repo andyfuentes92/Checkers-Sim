@@ -10,7 +10,7 @@ public class Interface {
     private Board board;
     boolean gameInProgress;
     boolean whiteMove;
-    ButtonGrid grid = new ButtonGrid(8,8);
+    //ButtonGrid grid = new ButtonGrid(8,8);
 
     public Interface(Board brd){
         input = new Scanner(System.in);
